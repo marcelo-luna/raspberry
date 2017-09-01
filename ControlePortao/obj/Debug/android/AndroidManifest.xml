@@ -11,7 +11,7 @@
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
     </activity>
-    <activity android:label="Tools" android:name="md553a324bd078ba9a6eb3d5938be647525.Tools" />
+    <activity android:label="ToolsActivity" android:name="md553a324bd078ba9a6eb3d5938be647525.ToolsActivity" />
     <provider android:name="mono.MonoRuntimeProvider" android:exported="false" android:initOrder="2147483647" android:authorities="ControlePortao.ControlePortao.mono.MonoRuntimeProvider.__mono_init__" />
     <!--suppress ExportedReceiver-->
     <receiver android:name="mono.android.Seppuku">

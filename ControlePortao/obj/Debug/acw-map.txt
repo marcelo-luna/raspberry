@@ -2,7 +2,7 @@ ControlePortao.MainActivity, ControlePortao;md553a324bd078ba9a6eb3d5938be647525.
 ControlePortao.MainActivity, ControlePortao, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md553a324bd078ba9a6eb3d5938be647525.MainActivity
 ControlePortao.MainActivity;md553a324bd078ba9a6eb3d5938be647525.MainActivity
 controleportao.MainActivity;md553a324bd078ba9a6eb3d5938be647525.MainActivity
-ControlePortao.Tools, ControlePortao;md553a324bd078ba9a6eb3d5938be647525.Tools
-ControlePortao.Tools, ControlePortao, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md553a324bd078ba9a6eb3d5938be647525.Tools
-ControlePortao.Tools;md553a324bd078ba9a6eb3d5938be647525.Tools
-controleportao.Tools;md553a324bd078ba9a6eb3d5938be647525.Tools
+ControlePortao.ToolsActivity, ControlePortao;md553a324bd078ba9a6eb3d5938be647525.ToolsActivity
+ControlePortao.ToolsActivity, ControlePortao, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md553a324bd078ba9a6eb3d5938be647525.ToolsActivity
+ControlePortao.ToolsActivity;md553a324bd078ba9a6eb3d5938be647525.ToolsActivity
+controleportao.ToolsActivity;md553a324bd078ba9a6eb3d5938be647525.ToolsActivity

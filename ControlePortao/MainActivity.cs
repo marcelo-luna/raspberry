@@ -7,12 +7,17 @@ using System.Threading.Tasks;
 using Android.Media;
 using System;
 using Android.Views;
+using System.Xml.Linq;
+using System.IO;
+using System.Xml;
 
 namespace ControlePortao
 {
     [Activity(Label = "Controle App", MainLauncher = true, Icon = "@drawable/icon2")]
     public class MainActivity : Activity
     {
+        string Host = "", User = "", Password = ""; 
+
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
@@ -23,14 +28,15 @@ namespace ControlePortao
             var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
             SetActionBar(toolbar);
             ActionBar.Title = "CONTROLE APP";
+            LoadConfig();
 
             Button button = FindViewById<Button>(Resource.Id.btnOpen);
 
-            SshClient ssh = new SshClient("192.168.0.150", "pi", "toor");
+            //SshClient ssh = new SshClient(Host, User, Password);
 
             try
             {
-                ssh.Connect();
+                //ssh.Connect();
             }
             catch
             {
@@ -41,9 +47,9 @@ namespace ControlePortao
             {
                 try
                 {
-                    ssh.RunCommand("python /home/pi/projetos/automatePortao.py");
+                    //ssh.RunCommand("python /home/pi/projetos/automatePortao.py");
                 }
-                catch
+                catch (Exception ex)
                 {
                     Toast.MakeText(this, "Erro de Conexão", ToastLength.Short).Show();
                 }
@@ -62,8 +68,42 @@ namespace ControlePortao
             /*Toast.MakeText(this, "Action selected: " + item.TitleFormatted,
                 ToastLength.Short).Show();*/
 
-            StartActivity(typeof(Tools));
+            StartActivity(typeof(ToolsActivity));
             return base.OnOptionsItemSelected(item);
+        }
+
+        private void LoadConfig()
+        {
+            try
+            {
+                using (XmlTextReader reader = new XmlTextReader(Assets.Open("ServerConfig.xml")))
+                {
+                    while (reader.Read())
+                    {
+                        if (reader.IsStartElement())
+                        {
+                            switch (reader.Name)
+                            {
+                                case "host":
+                                    Host = reader.ReadString();
+                                    break;
+
+                                case "user":
+                                    User = reader.ReadString();
+                                    break;
+
+                                case "password":
+                                    Password = reader.ReadString();
+                                    break;
+                            }
+                        }
+                    }
+                }
+            }
+            catch
+            {
+                Toast.MakeText(this, "Erro ao ler configurações", ToastLength.Short).Show();
+            }
         }
     }
 }
