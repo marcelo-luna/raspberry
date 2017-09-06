@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
 using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-using System.Threading.Tasks;
-using System.Xml.Linq;
 using System.Xml;
+using System.Xml.Linq;
+using System.IO;
+using System.Xml.Serialization;
 
 namespace ControlePortao
 {
@@ -24,16 +24,17 @@ namespace ControlePortao
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            base.OnCreate(savedInstanceState);
+            SetContentView(Resource.Layout.Tools);
+            // Create your application here
 
             Host = FindViewById<EditText>(Resource.Id.txtIp);
             Usuario = FindViewById<EditText>(Resource.Id.txtUsuario);
             Senha = FindViewById<EditText>(Resource.Id.txtSenha);
 
-            base.OnCreate(savedInstanceState);
-            SetContentView(Resource.Layout.Tools);
-            // Create your application here
-
-            LoadXMLData();
+            var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
+            SetActionBar(toolbar);
+            ActionBar.Title = "Configurações";
 
             Button btnGravar = FindViewById<Button>(Resource.Id.btnGravar);
 
@@ -48,9 +49,21 @@ namespace ControlePortao
                     Toast.MakeText(this, "Erro ao gravar arquivo", ToastLength.Short).Show();
                 }
             };
+
+            LoadConfig();
+
         }
 
-        private void LoadXMLData()
+        private void teste()
+        {
+            /*using (TextReader reader = new StreamReader("./TestData/test.xml"))
+            {
+                XmlSerializer serializer = new XmlSerializer(typeof(MyObject));
+                var xml = (MyObject)serializer.Deserialize(reader);
+            }*/
+        }
+
+        private void LoadConfig()
         {
             try
             {
@@ -77,16 +90,15 @@ namespace ControlePortao
                         }
                     }
                 }
-
             }
-            catch (Exception ex)
+            catch
             {
-
+                Toast.MakeText(this, "Erro ao ler configurações", ToastLength.Short).Show();
             }
         }
 
         private void Save()
-        {
+        {/*
             try
             {
                 XDocument xDocument = XDocument.Load(Assets.Open("ServerConfig.xml"));
@@ -101,7 +113,8 @@ namespace ControlePortao
             catch (Exception ex)
             {
 
-            }
+            }*/
+            this.Finish();
         }
     }
 }

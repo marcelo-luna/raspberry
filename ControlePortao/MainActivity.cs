@@ -27,7 +27,7 @@ namespace ControlePortao
 
             var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
             SetActionBar(toolbar);
-            ActionBar.Title = "CONTROLE APP";
+            ActionBar.Title = "Controle APP";
             LoadConfig();
 
             Button button = FindViewById<Button>(Resource.Id.btnOpen);

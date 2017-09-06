@@ -1,44 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-  <include
-          android:id="@+id/toolbar"
-          layout="@layout/toolbar" />
-  <TextView android:text="IP/HOST"
-            android:layout_width="fill_parent"
-        android:layout_height="wrap_content"/>
-  <EditText
-    android:id="@+id/txtIp"
-     android:layout_width="fill_parent"
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
+    <TextView
+        android:text="IP/HOST"
+        android:layout_width="fill_parent"
+        android:editable="false"
+        android:layout_height="wrap_content" />
+    <EditText
+        android:id="@+id/txtIp"
+        android:layout_width="fill_parent"
+        android:editable="false"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:text="Usuário"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+    <EditText
+        android:id="@+id/txtUsuario"
+        android:layout_width="fill_parent"
+        android:editable="false"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:text="Senha"
+        android:layout_width="fill_parent"
+        android:editable="false"
+        android:layout_height="wrap_content" />
+    <EditText
+        android:id="@+id/txtSenha"
+        android:layout_width="fill_parent"
+        android:editable="false"
+        android:inputType="textPassword"
+        android:layout_height="wrap_content" />
+    <Button
+        android:text="OK"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-  />
-  <TextView android:text="Usuário"
-            android:layout_width="fill_parent"
-        android:layout_height="wrap_content"/>
-  <EditText
-  android:id="@+id/txtUsuario"
-   android:layout_width="fill_parent"
-      android:layout_height="wrap_content"
-  />
-
-  <TextView android:text="Senha"
-            android:layout_width="fill_parent"
-        android:layout_height="wrap_content"/>
-  <EditText
-  android:id="@+id/txtSenha"
-   android:layout_width="fill_parent"
-      android:layout_height="wrap_content"
-  android:password="true"
-  />
-
-  <Button
-      android:text="Gravar"
-      android:layout_width="fill_parent"
-      android:layout_height="wrap_content"
-      android:id="@+id/btnGravar"
-      android:layout_below="@+id/toolbar"/>
-
+        android:id="@+id/btnGravar"
+        android:layout_below="@+id/toolbar" />
 </LinearLayout>

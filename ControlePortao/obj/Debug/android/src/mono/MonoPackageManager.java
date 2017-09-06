@@ -100,6 +100,12 @@ class MonoPackageManager_Resources {
 		/* We need to ensure that "ControlePortao.dll" comes first in this list. */
 		"ControlePortao.dll",
 		"Renci.SshNet.dll",
+		"SQLite-net.dll",
+		"SQLitePCLRaw.batteries_green.dll",
+		"SQLitePCLRaw.batteries_v2.dll",
+		"SQLitePCLRaw.core.dll",
+		"SQLitePCLRaw.lib.e_sqlite3.dll",
+		"SQLitePCLRaw.provider.e_sqlite3.dll",
 		"SshNet.Security.Cryptography.dll",
 	};
 	public static final String[] Dependencies = new String[]{
