@@ -10,6 +10,9 @@ using Android.Views;
 using System.Xml.Linq;
 using System.IO;
 using System.Xml;
+using System.Reflection;
+using System.Collections.Generic;
+using System.Xml.Serialization;
 
 namespace ControlePortao
 {
@@ -28,6 +31,12 @@ namespace ControlePortao
             var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
             SetActionBar(toolbar);
             ActionBar.Title = "Controle APP";
+
+            //var listView = new ListView();
+            //listView.ItemsSource = serverInfo;
+
+            //var assembly = typeof(LoadResourceText).GetTypeInfo().Assembly;
+
             LoadConfig();
 
             Button button = FindViewById<Button>(Resource.Id.btnOpen);
@@ -99,8 +108,49 @@ namespace ControlePortao
                         }
                     }
                 }
+
+                var assembly = Assembly.GetExecutingAssembly();
+                var resourceName = "ControlePortao.ConfigServer.xml";
+
+                XmlDocument xDoc = new XmlDocument();
+                using (System.IO.Stream stream = assembly.GetManifestResourceStream(resourceName))
+                using (StreamReader reader = new StreamReader(stream))
+                {
+                    string result = reader.ReadToEnd();
+                   
+                    xDoc.LoadXml(result);
+                }
+
+               // XmlNode nodeHost = xDoc.DocumentElement;
+               //XmlNode teste = nodeHost.SelectSingleNode("host");
+
+                 XmlNodeList aNodes = xDoc.SelectNodes("/config/server");
+
+                string steste = "";
+                 foreach (XmlNode aNode in aNodes)
+                 {
+
+                    if (aNode.Name == "host")
+                        steste = aNode.Value.ToString();
+                     //XmlAttribute idAttribute = aNode.Value;
+                     //XmlAttribute idAttribute = aNode.Attributes["id"];
+                     //idAttribute =  ;
+
+                        /*if (idAttribute != null)
+                        {
+                            // if yes - read its current value
+                            string currentValue = idAttribute.Value;
+
+                            // here, you can now decide what to do - for demo purposes,
+                            // I just set the ID value to a fixed value if it was empty before
+                            if (string.IsNullOrEmpty(currentValue))
+                            {
+                                idAttribute.Value = "515";
+                            }
+                        }*/
+                 }
             }
-            catch
+            catch (Exception ex)
             {
                 Toast.MakeText(this, "Erro ao ler configurações", ToastLength.Short).Show();
             }
