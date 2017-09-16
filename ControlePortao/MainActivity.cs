@@ -13,8 +13,6 @@ namespace ControlePortao
     [Activity(Label = "Controle App", MainLauncher = true, Icon = "@drawable/icon2")]
     public class MainActivity : Activity
     {
-        string Host = "", User = "", Password = "";
-        public SshClient ssh { get; set; }
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -42,9 +40,7 @@ namespace ControlePortao
             {
                 try
                 {
-
-                    //ssh.RunCommand("python /home/pi/projetos/automatePortao.py");
-                    ConnectionHelper.SSHConection(false).RunCommand(" ");
+                    ConnectionHelper.SSHConection(false).RunCommand("python /home/pi/projetos/automatePortao.py");
                 }
                 catch (Exception ex)
                 {
