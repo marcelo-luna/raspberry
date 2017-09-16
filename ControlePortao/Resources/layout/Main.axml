@@ -7,11 +7,11 @@
 <include
         android:id="@+id/toolbar"
         layout="@layout/toolbar" />
+
   <Button
         android:text="Abrir/Fechar"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/btnOpen"
         android:layout_below="@+id/toolbar"/>
-
 </LinearLayout>

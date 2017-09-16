@@ -25,16 +25,20 @@ namespace ControlePortao
             SetActionBar(toolbar);
             ActionBar.Title = "Controle APP";
 
-            if (ConnectionHelper.SSHConection(false).IsConnected)
+            try
             {
-                Toast.MakeText(this, "Conexão estabelecida!", ToastLength.Long).Show();
+                if (ConnectionHelper.SSHConection(false).IsConnected)
+                    Toast.MakeText(this, "Conexão estabelecida!", ToastLength.Long).Show();
+                else
+                    Toast.MakeText(this, "Dispositivo não conectado, verifique as configurações", ToastLength.Long).Show();
             }
-            else
+            catch
             {
                 Toast.MakeText(this, "Erro ao Estabelecer Conexão", ToastLength.Long).Show();
             }
 
             Button button = FindViewById<Button>(Resource.Id.btnOpen);
+            //ImageButton btnTeste = FindViewById<ImageButton>(Resource.Id.myButton);
 
             button.Click += delegate
             {

@@ -1,14 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using ControlePortao.Model;
 
 namespace ControlePortao
@@ -21,7 +13,7 @@ namespace ControlePortao
         {
             string Diretorio = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
 
-            var Plataform = new SQLite.Net.Platform.XamarinAndroid.SQLitePlatformAndroid();
+            var Plataform = new SQLite.Net.Platform.XamarinAndroid.SQLitePlatformAndroidN();
 
             _conexao = new SQLite.Net.SQLiteConnection(Plataform, System.IO.Path.Combine(Diretorio, "Configuracao.db3"));
 
