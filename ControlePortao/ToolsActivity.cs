@@ -12,6 +12,9 @@ using System.Xml;
 using System.Xml.Linq;
 using System.IO;
 using System.Xml.Serialization;
+using ControlePortao.Model;
+using Renci.SshNet;
+using ControlePortao.Helper;
 
 namespace ControlePortao
 {
@@ -54,40 +57,25 @@ namespace ControlePortao
 
         }
 
-        private void teste()
-        {
-            /*using (TextReader reader = new StreamReader("./TestData/test.xml"))
-            {
-                XmlSerializer serializer = new XmlSerializer(typeof(MyObject));
-                var xml = (MyObject)serializer.Deserialize(reader);
-            }*/
-        }
-
         private void LoadConfig()
         {
             try
             {
-                using (XmlTextReader reader = new XmlTextReader(Assets.Open("ServerConfig.xml")))
+                Configuracao configuracao = new Configuracao();
+
+                using (var dados = new DataAcces())
                 {
-                    while (reader.Read())
+                    List<Configuracao> listaConfiguracao = dados.ListAllConfiguracao();
+                    if (listaConfiguracao.Count == 0)
                     {
-                        if (reader.IsStartElement())
-                        {
-                            switch (reader.Name)
-                            {
-                                case "host":
-                                    Host.Text = reader.ReadString();
-                                    break;
-
-                                case "user":
-                                    Usuario.Text = reader.ReadString();
-                                    break;
-
-                                case "password":
-                                    Senha.Text = reader.ReadString();
-                                    break;
-                            }
-                        }
+                        dados.Dispose();
+                        return;
+                    }
+                    else
+                    {
+                        Host.Text = listaConfiguracao[0].Server;
+                        Usuario.Text = listaConfiguracao[0].User;
+                        Senha.Text = listaConfiguracao[0].Password;
                     }
                 }
             }
@@ -97,24 +85,52 @@ namespace ControlePortao
             }
         }
 
+        public override void OnBackPressed()
+        {
+            this.Finish();
+        }
+
         private void Save()
-        {/*
+        {
             try
             {
-                XDocument xDocument = XDocument.Load(Assets.Open("ServerConfig.xml"));
-                XElement root = xDocument.Element("config");
-                IEnumerable<XElement> rows = root.Descendants("server");
-                XElement firstRow = rows.First();
-                firstRow.AddBeforeSelf(
-                   new XElement("FirstName", ""),
-                   new XElement("LastName", ""));
-                xDocument.Save("ServerConfig.xml");
+                Configuracao configuracao = new Configuracao()
+                {
+                    Server = Host.Text,
+                    User = Usuario.Text,
+                    Password = Senha.Text
+                };
+
+                using (var dados = new DataAcces())
+                {
+                    List<Configuracao> listaConfiguracao = dados.ListAllConfiguracao();
+
+                    if (listaConfiguracao.Count == 0)
+                        dados.Insert(configuracao);
+                    else
+                    {
+                        listaConfiguracao[0].Server = configuracao.Server;
+                        listaConfiguracao[0].User = configuracao.User;
+                        listaConfiguracao[0].Password = configuracao.Password;
+
+                        dados.Update(listaConfiguracao[0]);
+                    }
+                }
+
+                TestConnection(configuracao);
             }
             catch (Exception ex)
             {
 
-            }*/
-            this.Finish();
+            }
+        }
+
+        private void TestConnection(Configuracao config)
+        {
+            if (ConnectionHelper.SSHConection(true).IsConnected)
+                Toast.MakeText(this, "Conexão Estabelecida!", ToastLength.Short).Show();
+            else
+                Toast.MakeText(this, "Erro ao Estabelecer Conexão", ToastLength.Short).Show();
         }
     }
 }

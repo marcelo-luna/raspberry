@@ -26,6 +26,10 @@ namespace ControlePortao
 		
 		public static void UpdateIdValues()
 		{
+			global::SQLite.Net.Platform.XamarinAndroid.Resource.String.ApplicationName = global::ControlePortao.Resource.String.ApplicationName;
+			global::SQLite.Net.Platform.XamarinAndroid.Resource.String.Hello = global::ControlePortao.Resource.String.Hello;
+			global::SQLite.Net.Platform.XamarinAndroidN.Resource.String.ApplicationName = global::ControlePortao.Resource.String.ApplicationName;
+			global::SQLite.Net.Platform.XamarinAndroidN.Resource.String.Hello = global::ControlePortao.Resource.String.Hello;
 		}
 		
 		public partial class Attribute
@@ -70,7 +74,7 @@ namespace ControlePortao
 			public const int btnOpen = 2131165185;
 			
 			// aapt resource value: 0x7f070006
-			public const int menu_preferences = 2131165190;
+			public const int configuracoes = 2131165190;
 			
 			// aapt resource value: 0x7f070000
 			public const int toolbar = 2131165184;
